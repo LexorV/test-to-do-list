@@ -1,24 +1,22 @@
 <template>
    <el-container >
       <el-header class="header">
-        <el-icon size="30px"><CaretBottom /></el-icon>
-        <h1 class="heading">to do list</h1>
         <el-button class="create-btn"
          @click="openModal"
          type="info">
          <el-icon><CirclePlus />
         </el-icon><span>Создать</span>
       </el-button>
+      <h1 class="heading">Ваши задачи</h1>
       </el-header>
     </el-container>
   </template>
   
   <script>
-  import { CaretBottom, CirclePlus } from '@element-plus/icons-vue'
+  import { CirclePlus } from '@element-plus/icons-vue'
   export default {
     name: 'headerStart',
     components: {
-      CaretBottom,
       CirclePlus
     },
     methods: {
@@ -34,11 +32,14 @@
   .header {
     background-color: #545c64;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 10px;
+    padding-left: 40px;
   }
   .heading {
-    margin: 0
+    color: white;
+    margin: 0;
+    width: 100%;
   }
   .create-btn {
     display: flex;

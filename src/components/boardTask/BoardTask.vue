@@ -2,7 +2,7 @@
      <el-main class="main">
     <el-col class="board" :offset="2" :span="4">
         <OneTask
-        v-for="task in $store.state.tasks"
+        v-for="task in tasks"
         :key="task.id"
         :task="task"
         />
@@ -15,8 +15,31 @@ import OneTask from '@/components/boardTask/OneTask.vue'
     export default {
         components: {
             OneTask
-        }
-
+        },
+        created () {
+            this.checkedTasks()
+        },
+        watch: {
+    '$store.state.isTaskToday': {
+      handler() {
+        this.checkedTasks()
+      },
+      immediate: true
+    } 
+            },     
+        methods: {
+            checkedTasks() {
+                if(this.$store.state.isTaskToday) {
+                this.tasks = this.$store.getters.tasksToday()
+                }
+                else  this.tasks = this.$store.state.tasks 
+            }
+        },
+        data() {
+            return {
+                tasks: [] 
+            }
+        },
     }
 </script>
 
