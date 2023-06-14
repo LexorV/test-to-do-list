@@ -1,15 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HeaderStart />
+  <TaskMenu />
+  <ModalNewTask />
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HeaderStart from '@/components/HeaderStart.vue'
+import TaskMenu from '@/components/TaskMenu.vue'
+import ModalNewTask from '@/components/ModalNewTask.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HeaderStart,
+    TaskMenu,
+    ModalNewTask
   }
 }
 </script>
@@ -21,6 +27,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
