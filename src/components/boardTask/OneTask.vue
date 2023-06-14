@@ -52,7 +52,18 @@ export default {
 }
 .box-card {
   width: 480px;
+  
 }
+@media screen and (max-width: 700px) {
+  .box-card{
+    width: 300px;
+  }
+  }
+  @media screen and (max-width: 350px) {
+  .box-card{
+    width: 250px;
+  }
+  }
 .box-description {
   display: flex;
   justify-content: space-between;

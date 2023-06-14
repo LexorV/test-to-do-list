@@ -1,6 +1,6 @@
 <template>
      <el-main class="main">
-    <el-col class="board" :offset="2" :span="4">
+    <el-col class="board">
         <OneTask
         v-for="task in tasks"
         :key="task.id"
@@ -49,8 +49,13 @@ import OneTask from '@/components/boardTask/OneTask.vue'
     gap: 10px;
     box-sizing: border-box;
     flex-direction: column;
-    align-items: center;
+    align-items:flex-start;
 }
+@media screen and (max-width: 700px) {
+    .board {
+    align-items:center;
+  }
+  }
 .main {
     padding: 10px;
     background-color: rgb(217, 224, 230);

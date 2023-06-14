@@ -64,7 +64,7 @@
             rules: {
           name: [
             { required: true, message: 'Пожалуйста, укажите название задачи', trigger: 'blur' },
-            { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
+            { min: 3, message: 'Не меньше 3 символов', trigger: 'blur' }
           ],
           date: [
             { type: 'date', required: true, message: 'Укажите дату задачи', trigger: 'change' }

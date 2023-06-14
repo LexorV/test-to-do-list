@@ -45,6 +45,11 @@
     display: flex;
     gap: 8px;  
   }
+  @media screen and (max-width: 450px) {
+  .heading{
+    font-size: 16px;
+  }
+  }
  
   </style>
   

@@ -1,9 +1,8 @@
 <template>
-    <el-row>
+    <el-row class="menu" >
         <el-menu
           active-text-color="#ffd04b"
           background-color="#545c64"
-          class="el-menu-vertical-demo"
           default-active="1"
           text-color="#fff"
         >
@@ -29,10 +28,14 @@
         this.$store.commit('DISABLE_TASK_TODAY')
       }
     }
-
   }
 
   </script>
     <style scoped>
+    @media screen and (max-width: 550px) {
+  .menu{
+    display: none;
+  }
+  }
    
     </style>
