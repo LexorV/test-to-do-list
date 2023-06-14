@@ -1,15 +1,19 @@
 <template>
-    <div class="modal-background"></div>
+   <div class="modal-background"></div>
      <el-col class="modal" :span="12" :offset="6">
-        <el-button @click="closeForm" class="close-icon" size="large" :icon="Search" circle>
+        <el-button 
+         @click="closeForm" 
+          class="close-icon"
+           size="large" 
+           :icon="Search" circle>
             <el-icon size="30px"><Close /></el-icon>
         </el-button>
         <h4>Изменить задачу</h4>
-    <el-form :model="form" label-width="120px">
-      <el-form-item label="Название">
+    <el-form ref="form" :rules="rules" :model="form" label-width="120px">
+      <el-form-item label="Название" prop="name">
         <el-input v-model="form.name" />
       </el-form-item>
-      <el-form-item label="Дата начала">
+      <el-form-item label="Дата начала" prop="date">
         <el-col :span="11">
           <el-date-picker
             v-model="form.date"
@@ -18,9 +22,8 @@
             style="width: 100%"
           />
         </el-col>
-        <el-col :span="2" class="text-center">
-          <span class="text-gray-500">-</span>
-        </el-col>
+      </el-form-item>
+        <el-form-item prop="time" label="Время начала">
         <el-col :span="11">
           <el-time-picker
             v-model="form.time"
@@ -36,7 +39,7 @@
         <el-input rows="12" v-model="form.desc" type="textarea" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">Создать</el-button>
+        <el-button type="primary" @click="onSubmit('form')">Изменить</el-button>
       </el-form-item>
     </el-form>
 </el-col>
@@ -57,7 +60,22 @@
                 time: this.task.time || '',
                 required:this.task.required || false,
                 desc: this.task.desc || ''
-            })
+            }),
+            rules: {
+          name: [
+            { required: true, message: 'Пожалуйста, укажите название задачи', trigger: 'blur' },
+            { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
+          ],
+          date: [
+            { type: 'date', required: true, message: 'Укажите дату задачи', trigger: 'change' }
+          ],
+          time: [
+            { type: 'date', required: false, message: 'Укажите время', trigger: 'change' }
+          ],
+          desc: [
+            { required: false, message: 'Пожалуйста, укажите описание', trigger: 'blur' }
+          ]
+        }
         }
     },
     props: {
@@ -75,10 +93,18 @@
         this.required = false
         this.desc = ''
       },
-        onSubmit () {
+      onSubmit(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
             this.$store.commit('EDIT_TASK', {id:this.task.id, ...this.form})
             this.closeForm()
-        }
+          } else {
+            console.log('error validation');
+            return false;
+          }
+        });
+      },
+      
     }
 }
   </script>

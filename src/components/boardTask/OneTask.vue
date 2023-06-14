@@ -3,7 +3,7 @@
         <div class="card-header">
         <span>{{ task.name }}</span>
         <span>{{ `${ new Date (task.date).toLocaleDateString()}
-         ${ `${new Date (task.time).getHours()}:${new Date (task.time).getMinutes()}`}` }}</span>
+         ${ task.time ? `${new Date (task.time).getHours()}:${new Date (task.time).getMinutes()}`: ''}` }}</span>
         <span class="warning">{{ this.task.required? 'Обязательное': '' }}</span>
         <el-button  @click="deleteTask" :icon="Delete" circle >
           <el-icon><Delete /></el-icon>
