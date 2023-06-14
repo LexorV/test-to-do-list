@@ -3,7 +3,12 @@
       <el-header class="header">
         <el-icon size="30px"><CaretBottom /></el-icon>
         <h1 class="heading">to do list</h1>
-        <el-button type="info"><el-icon><CirclePlus /></el-icon></el-button>
+        <el-button class="create-btn"
+         @click="openModal"
+         type="info">
+         <el-icon><CirclePlus />
+        </el-icon><span>Создать</span>
+      </el-button>
       </el-header>
     </el-container>
   </template>
@@ -15,6 +20,11 @@
     components: {
       CaretBottom,
       CirclePlus
+    },
+    methods: {
+      openModal() {
+        this.$store.commit('TOGGLE_MODAL')
+      }
     }
   }
   </script>
@@ -29,7 +39,10 @@
   }
   .heading {
     margin: 0
-
+  }
+  .create-btn {
+    display: flex;
+    gap: 8px;  
   }
  
   </style>

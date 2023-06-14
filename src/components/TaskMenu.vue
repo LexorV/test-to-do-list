@@ -1,6 +1,5 @@
 <template>
-    <el-row class="tac">
-      <el-col :span="3">
+    <el-row>
         <el-menu
           active-text-color="#ffd04b"
           background-color="#545c64"
@@ -40,7 +39,6 @@
             <span>Navigator Four</span>
           </el-menu-item>
         </el-menu>
-      </el-col>
     </el-row>
   </template>
   

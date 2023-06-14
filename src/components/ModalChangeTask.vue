@@ -4,7 +4,7 @@
         <el-button @click="closeForm" class="close-icon" size="large" :icon="Search" circle>
             <el-icon size="30px"><Close /></el-icon>
         </el-button>
-        <h4>Новая задача</h4>
+        <h4>Изменить задачу</h4>
     <el-form :model="form" label-width="120px">
       <el-form-item label="Название">
         <el-input v-model="form.name" />
@@ -45,7 +45,6 @@
   <script>
   import { reactive } from 'vue'
   import { Close } from '@element-plus/icons-vue'
-  import { uniqid } from '@/helpers'
   export default {
     components: {
         Close
@@ -53,18 +52,23 @@
     data () {
         return {
             form: reactive({
-                name: '',
-                date: '',
-                time: '',
-                required: false,
-                desc: ''
+                name: this.task.name || '',
+                date: this.task.date || '',
+                time: this.task.time || '',
+                required:this.task.required || false,
+                desc: this.task.desc || ''
             })
         }
     },
+    props: {
+      task: {
+        type: Object,
+        default: () => ({})
+      }
+    },
     methods: {
-      uniqid,
       closeForm () {
-        this.$store.commit('TOGGLE_MODAL')
+        this.$store.commit('CLEARE_EDITABLE_TASK')
         this.name = ''
         this.date=''
         this.time=''
@@ -72,7 +76,7 @@
         this.desc = ''
       },
         onSubmit () {
-            this.$store.commit('ADD_TASK', {id:uniqid(), ...this.form})
+            this.$store.commit('EDIT_TASK', {id:this.task.id, ...this.form})
             this.closeForm()
         }
     }
