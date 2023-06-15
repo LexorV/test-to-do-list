@@ -10,10 +10,10 @@
         </el-button>
         <h4>Новая задача</h4>
     <el-form ref="form" :rules="rules" :model="form" label-width="120px">
-      <el-form-item label="Название" prop="name">
+      <el-form-item class="field" label="Название" prop="name">
         <el-input v-model="form.name" />
       </el-form-item>
-      <el-form-item label="Дата начала" prop="date">
+      <el-form-item class="field" label="Дата начала" prop="date">
         <el-col :span="11">
           <el-date-picker
             v-model="form.date"
@@ -23,7 +23,7 @@
           />
         </el-col>
       </el-form-item>
-        <el-form-item prop="time" label="Время начала">
+        <el-form-item class="field" prop="time" label="Время начала">
         <el-col :span="11">
           <el-time-picker
             v-model="form.time"
@@ -35,7 +35,7 @@
       <el-form-item label="Срочная">
         <el-switch v-model="form.required" />
       </el-form-item>
-      <el-form-item label="Описание">
+      <el-form-item class="field" label="Описание">
         <el-input rows="12" v-model="form.desc" type="textarea" />
       </el-form-item>
       <el-form-item>
@@ -103,10 +103,6 @@
           }
         });
       },
-        onSubmit1 () {
-            this.$store.commit('ADD_TASK', {id:uniqid(), ...this.form})
-            this.closeForm()
-        }
     }
 }
   </script>
@@ -133,10 +129,26 @@
     bottom: 0;
     z-index: 50;
   }
-  .name-field {}
   .close-icon {
     position: absolute;
     right: 30px;
     top: 30px;
   }
+  @media screen and (max-width: 1000px) {
+    .modal {
+      min-width: 70%;
+      left: 0;
+      padding: 10px;
+    }
+    .field{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .close-icon {
+    right: 10px;
+    top: 10px;
+  }
+  }
+
   </style>
